@@ -19,7 +19,7 @@ export function StatCard({ config, stats, busy = false, selected = false, onSele
   const titleId = useId();
   const sizes = { ...dashboardTheme.cardSizes, ...config.sizes };
   const Icon = cardIcons[config.icon];
-  const Rows = cardRowRenderers[config.id] ?? DefaultRows;
+  const CustomRows = cardRowRenderers[config.id];
   const highlighted = config.variant === "highlight" || selected;
 
   return (
@@ -70,7 +70,15 @@ export function StatCard({ config, stats, busy = false, selected = false, onSele
           ) : null}
           <p className="mt-2 text-[length:var(--card-caption)]">{compareLabel}</p>
         </div>
-        {stats ? <Rows rows={stats.rows} /> : null}
+        
+        {stats ? (
+          CustomRows ? (
+            <CustomRows rows={stats.rows} extraRows={stats.extraRows} />
+          ) : (
+            <DefaultRows rows={stats.rows} extraRows={stats.extraRows} />
+          )
+        ) : null}
+
       </div>
     </article>
   );

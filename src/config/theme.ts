@@ -23,7 +23,7 @@ export const dashboardTheme = {
   gridGap: 20,
   cardSizes: {
     width: 128,
-    minHeight: 392,
+    minHeight: 320,
     padding: 10,
     radius: 16,
     iconBox: 28,

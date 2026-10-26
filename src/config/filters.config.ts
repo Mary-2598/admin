@@ -22,8 +22,13 @@ export const selectFilters: ReadonlyArray<{
     { value: "isfahan", label: "اصفهان" }, { value: "shiraz", label: "شیراز" } ] },
 
   { key: "category", label: "دسته بندی", options: [
-    { value: "all", label: "دسته بندی" }, { value: "fashion", label: "پوشاک" },
-    { value: "digital", label: "کالای دیجیتال" }, { value: "home", label: "خانه و آشپزخانه" } ] },
+    { value: "all", label: "دسته بندی" }, 
+    { value: "clothing", label: "پوشاک" },
+    { value: "digital", label: "کالای دیجیتال" },
+    { value: "home", label: "خانه و آشپزخانه" },
+    { value: "cosmetics", label: "لوازم آرایشی" },
+    { value: "food", label: "مواد غذایی" }
+  ] },
 ];
 
 export const defaultFilters: DashboardFilters = {
