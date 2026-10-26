@@ -8,7 +8,7 @@ export interface RowsProps {
 }
 
 export function DefaultRows({ rows, extraRows }: RowsProps) {
-  // ۱. اگر هیچ لیبلی نداریم (بقیه کارت‌ها)، همون کادرهای خالی قبلی رو نشون بده
+  
   const hasLabels = rows.some((r) => r.label);
   if (!hasLabels) {
     return (
@@ -23,7 +23,7 @@ export function DefaultRows({ rows, extraRows }: RowsProps) {
     );
   }
 
-  // ۲. اگر لیبل داریم (کارت محصولات)
+
   return (
     <div className="mt-2 flex flex-col gap-5">
       {/* بخش اول: ۴ مربع بالایی */}

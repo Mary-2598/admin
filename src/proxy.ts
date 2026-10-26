@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE } from "@/lib/auth";
 import { verifySessionToken } from "@/lib/session";
 
-// Next.js 16: `middleware.ts` was renamed to `proxy.ts`.
+
 export function proxy(request: NextRequest) {
   let authenticated = false;
   try {

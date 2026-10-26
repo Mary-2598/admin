@@ -44,7 +44,7 @@ export async function getDashboardStats(filters: DashboardFilters): Promise<Card
           flagged: false,
         };
       }),
-      // extraRows رو کلاً برداشتیم تا لیست پایین کارت حذف بشه
+     
       extraRows: undefined, 
     };
   });

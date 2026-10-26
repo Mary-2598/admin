@@ -13,7 +13,7 @@ export const cardIcons: Record<CardIconKey, LucideIcon> = {
   campaigns: Send,
 };
 
-// Full class names so Tailwind can see them.
+
 export const accentStyles: Record<CardAccent, string> = {
   lime: "bg-lime-200 text-lime-700",
   violet: "bg-violet-200 text-violet-700",
