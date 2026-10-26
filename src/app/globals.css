@@ -11,7 +11,7 @@
   --shadow-card: 0 2px 14px rgb(0 0 0 / 0.06);
 }
 
-html { background: var(--color-page); color: var(--color-ink); }
+html { background: #ffffff; color: var(--color-ink); }
 body { font-family: var(--font-sans); }
 
 @media (prefers-reduced-motion: reduce) {

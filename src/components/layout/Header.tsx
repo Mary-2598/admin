@@ -4,7 +4,7 @@ import { logoutAction } from "@/app/login/actions";
 
 export function Header() {
   return (
-    <header className="flex h-[65px] w-full items-center gap-4 border-t border-stork px-8 xl:mx-auto xl:w-[1226px]">
+    <header className="flex h-[65px] w-full items-center gap-4 border-t border-stork bg-white px-8 xl:mx-auto xl:w-[1226px]">
       <button
         type="button"
         aria-label="گزینه‌های بیشتر"
