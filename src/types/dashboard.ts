@@ -24,6 +24,7 @@ export interface CardStats {
   total: number;
   deltaPercent: number;
   rows: CardRow[];
+  extraRows?: CardRow[];
 }
 
 export type CardIconKey =

@@ -8,7 +8,7 @@ export interface DashboardCardConfig {
   accent: CardAccent;
   variant: CardVariant;
   rowCount: number;
-  /** Per-card size overrides, e.g. { width: 160, valueSize: 32 } */
+  
   sizes?: Partial<CardSizes>;
 }
 
