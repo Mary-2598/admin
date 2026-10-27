@@ -23,6 +23,28 @@ const PRODUCT_KPI_LABELS = [
   "موجودی"
 ];
 
+const STORY_KPI_LABELS = [
+  "همه استوری‌ها",
+  "بازدید کاربران",
+  "اخطارها",
+  "مخالف با قوانین"
+];
+
+const FINANCE_KPI_LABELS = [
+  "کل تراکنش‌ها",
+  "در انتظار تسویه",
+  "تسویه شده",
+  "تراکنش ناموفق"
+];
+
+// لیبل‌های پیام‌ها (همون ۴ موردی که تایید کردیم)
+const MESSAGES_KPI_LABELS = [
+  "کل پیام‌ها",
+  "پیام‌های جدید",
+  "خوانده نشده",
+  "حاوی محتوای غیرمرتبط"
+];
+
 export async function getDashboardStats(filters: DashboardFilters): Promise<CardStats[]> {
   if (typeof window !== "undefined") {
     await new Promise((resolve) => setTimeout(resolve, 350));
@@ -31,20 +53,49 @@ export async function getDashboardStats(filters: DashboardFilters): Promise<Card
   return dashboardCards.map((card): CardStats => {
     const base = BASE[card.id];
     const isProducts = card.id === "products";
+    const isStories = card.id === "stories";
+    const isFinance = card.id === "finance";
+    const isMessages = card.id === "messages";
     
+    const rowCount = isProducts ? PRODUCT_KPI_LABELS.length 
+                   : isStories ? STORY_KPI_LABELS.length 
+                   : isFinance ? FINANCE_KPI_LABELS.length
+                   : isMessages ? MESSAGES_KPI_LABELS.length
+                   : card.rowCount;
+
     return {
       id: card.id,
       total: base.total * MULTIPLIER[filters.period],
       deltaPercent: base.delta,
-      rows: Array.from({ length: isProducts ? PRODUCT_KPI_LABELS.length : card.rowCount }, (_, i) => {
+      rows: Array.from({ length: rowCount }, (_, i) => {
+        let rowValue: string | undefined = undefined;
+        
+        if (isProducts) {
+          rowValue = String(Math.floor(Math.random() * 500));
+        } else if (isStories) {
+          rowValue = (i >= 2) ? String(Math.floor(Math.random() * 50)) : String(Math.floor(Math.random() * 5000));
+        } else if (isFinance) {
+          if (i === 3) rowValue = String(Math.floor(Math.random() * 100));
+          else rowValue = String(Math.floor(Math.random() * 5000));
+        } else if (isMessages) {
+          // برای پیام‌ها، مواردی مثل "خوانده نشده" و "غیرمرتبط" تعدادشون کمتره
+          rowValue = (i >= 2) ? String(Math.floor(Math.random() * 200)) : String(Math.floor(Math.random() * 5000));
+        }
+
         return {
           id: stableId(card.id, i),
-          label: isProducts ? (PRODUCT_KPI_LABELS[i] ?? "") : "",
-          value: isProducts ? String(Math.floor(Math.random() * 500)) : undefined, 
-          flagged: false,
+          label: isProducts ? (PRODUCT_KPI_LABELS[i] ?? "") 
+               : isStories ? (STORY_KPI_LABELS[i] ?? "") 
+               : isFinance ? (FINANCE_KPI_LABELS[i] ?? "")
+               : isMessages ? (MESSAGES_KPI_LABELS[i] ?? "")
+               : "",
+          value: rowValue, 
+          // موارد نیازمند بررسی (اخطارها/غیرمرتبط/خوانده نشده) قرمز میشن
+          flagged: (isStories && i >= 2) 
+                || (isFinance && (i === 1 || i === 3)) 
+                || (isMessages && i >= 2), 
         };
       }),
-     
       extraRows: undefined, 
     };
   });

@@ -8,9 +8,10 @@ export interface RowsProps {
 }
 
 export function DefaultRows({ rows, extraRows }: RowsProps) {
-  
   const hasLabels = rows.some((r) => r.label);
+  
   if (!hasLabels) {
+    // ... کدهای قبلی برای لیبل خالی ...
     return (
       <ul className="flex flex-col gap-[var(--row-gap)]">
         {rows.map((row) => (
@@ -23,7 +24,6 @@ export function DefaultRows({ rows, extraRows }: RowsProps) {
     );
   }
 
-
   return (
     <div className="mt-2 flex flex-col gap-5">
       {/* بخش اول: ۴ مربع بالایی */}
@@ -31,19 +31,32 @@ export function DefaultRows({ rows, extraRows }: RowsProps) {
         {rows.map((row) => (
           <div
             key={row.id}
-            className="flex min-h-[60px] flex-col items-center justify-center rounded-lg border border-line bg-page p-2 text-center shadow-sm transition-colors hover:bg-white hover:border-brand/30"
+            className={cn(
+              "flex min-h-[60px] flex-col items-center justify-center rounded-lg border bg-page p-2 text-center shadow-sm transition-colors hover:bg-white",
+              // اگر flagged بود، حاشیه و رنگ پس‌زمینه قرمز ملایم بگیرد
+              row.flagged 
+                ? "border-red-200 bg-red-50/50 hover:border-red-300" 
+                : "border-line hover:border-brand/30"
+            )}
           >
-            <span className="text-sm font-extrabold text-ink">
+            <span className={cn(
+              "text-sm font-extrabold leading-none",
+              // رنگ متن اعداد
+              row.flagged ? "text-red-600" : "text-ink"
+            )}>
               {row.value ?? 0}
             </span>
-            <span className="mt-1 text-[length:var(--card-caption)] text-muted leading-tight">
+            <span className={cn(
+              "mt-1 text-[length:var(--card-caption)] leading-tight",
+              row.flagged ? "text-red-500 font-medium" : "text-muted"
+            )}>
               {row.label}
             </span>
           </div>
         ))}
       </div>
 
-      {/* بخش دوم: لیست دسته‌بندی‌ها (طراحی تمیزتر) */}
+      {/* بخش دوم: لیست دسته‌بندی‌ها */}
       {extraRows && extraRows.length > 0 && (
         <div className="flex flex-col">
           <p className="text-[length:var(--card-caption)] font-bold text-ink mb-2">
@@ -55,7 +68,6 @@ export function DefaultRows({ rows, extraRows }: RowsProps) {
                 key={row.id}
                 className={cn(
                   "flex items-center justify-between py-2 text-[length:var(--card-caption)]",
-                  // خط‌چین ظریف بین ردیف‌ها (به جز ردیف آخر)
                   index !== extraRows.length - 1 && "border-b border-dashed border-line/70"
                 )}
               >

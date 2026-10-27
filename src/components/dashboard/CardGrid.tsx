@@ -6,7 +6,7 @@ import { dashboardTheme } from "@/config/theme";
 import { useDashboard } from "@/context/DashboardContext";
 import { StatCard } from "./StatCard";
 import type { DashboardCardId } from "@/types/dashboard";
-
+import { filtersToQuery } from "@/lib/filters-url";
 export function CardGrid() {
   const { statsById, isLoading, hasError } = useDashboard();
   const [selectedId, setSelectedId] = useState<DashboardCardId | null>(null);

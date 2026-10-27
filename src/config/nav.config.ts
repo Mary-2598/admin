@@ -1,10 +1,8 @@
 import {
-  LayoutDashboard,
-  House,
-  MessageCircle,
-  Users,
-  ShoppingBag,
-  UserRound,
+  Store,
+  UsersRound,
+  Settings,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -18,45 +16,31 @@ export interface NavItem {
 
 export const navItems: readonly NavItem[] = [
   {
-    id: "dashboard",
-    label: "داشبورد",
-    href: "/",
-    icon: LayoutDashboard,
-    enabled: true,
-  },
-  {
-    id: "home",
-    label: "خانه",
+    id: "booths-panel",
+    label: "ورود به پنل غرفه‌ها",
     href: null,
-    icon: House,
+    icon: Store,
     enabled: false,
   },
   {
-    id: "messages",
-    label: "پیام‌ها",
+    id: "groups-panel",
+    label: "ورود به پنل گروه‌ها",
     href: null,
-    icon: MessageCircle,
+    icon: UsersRound,
     enabled: false,
   },
   {
-    id: "customers",
-    label: "مشتریان",
+    id: "settings",
+    label: "تنظیمات",
     href: null,
-    icon: Users,
+    icon: Settings,
     enabled: false,
   },
   {
-    id: "orders",
-    label: "سفارشات",
+    id: "system-management",
+    label: "مدیریت سیستم",
     href: null,
-    icon: ShoppingBag,
-    enabled: false,
-  },
-  {
-    id: "account",
-    label: "حساب من",
-    href: null,
-    icon: UserRound,
+    icon: ShieldCheck,
     enabled: false,
   },
 ];
