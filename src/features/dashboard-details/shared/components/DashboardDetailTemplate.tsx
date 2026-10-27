@@ -2,8 +2,8 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { StoryStatCards } from "../../stories/components/StoryStatCards";
-import { StoryManagementPanel } from "../../stories/components/StoryManagementPanel";
 import { storyDetailStats } from "../../stories/data/story-detail.mock";
+import { StoriesDashboardContent } from "../../stories/components/StoriesDashboardContent";
 
 interface Props {
   title: string;
@@ -33,20 +33,7 @@ export function DashboardDetailTemplate({ title, cardId }: Props) {
         <StoryStatCards stats={storyDetailStats} />
       ) : null}
 
-      <section
-        aria-label={`جزئیات ${title}`}
-        className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3"
-      >
-        <div className="min-w-0 lg:col-span-1">
-          {isStoriesPage ? <StoryManagementPanel /> : null}
-        </div>
-
-        {/* فضای سمت چپ عمداً برای محتوای آینده خالی است. */}
-        <div
-          aria-hidden="true"
-          className="hidden min-h-0 lg:col-span-2 lg:block"
-        />
-      </section>
+      {isStoriesPage ? <StoriesDashboardContent /> : null}
     </div>
   );
 }
