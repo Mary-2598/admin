@@ -79,7 +79,7 @@ export function SupportActionsPanel({ rows, filtersQuery, onCreate }: Props) {
   const preview = rows?.slice(0, PREVIEW_COUNT) ?? [];
 
   return (
-    <section aria-label="اقدامات اخیر پشتیبانی" className="rounded-2xl bg-white p-6 shadow-card">
+    <section aria-label="اقدامات اخیر پشتیبانی" className="min-w-0 rounded-xl border border-line bg-white p-5 shadow-card">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-bold">اقدامات اخیر پشتیبانی</h2>
         <Link

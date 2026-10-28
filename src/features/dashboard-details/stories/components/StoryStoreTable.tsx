@@ -41,7 +41,7 @@ export function StoryStoreTable({ stores, selectedStoreId, onSelectStore }: Prop
                 <thead className="bg-page text-muted">
                   <tr>
                     {HEADERS.map((h) => (
-                      <th key={h} scope="col" className="px-3 py-4 text-start font-medium">{h}</th>
+                      <th key={h} scope="col" className="px-3 py-3 text-start font-medium">{h}</th>
                     ))}
                     <th scope="col" className="w-10 px-2 py-4"><span className="sr-only">مشاهده جزئیات</span></th>
                   </tr>
@@ -53,7 +53,10 @@ export function StoryStoreTable({ stores, selectedStoreId, onSelectStore }: Prop
                       <tr
                         key={store.id}
                         onClick={() => onSelectStore(store.id)}
-                        className={cn("cursor-pointer transition-colors hover:bg-teal-50/50", selected ? "bg-teal-50/70" : "bg-white")}
+                        className={cn(
+                          "cursor-pointer transition-colors hover:bg-cyan-50/50",
+                          selected ? "bg-cyan-50/70" : "bg-white",
+                        )}
                       >
                         <th scope="row" className="px-3 py-4 text-start font-normal">
                           <button
@@ -93,7 +96,9 @@ export function StoryStoreTable({ stores, selectedStoreId, onSelectStore }: Prop
             </div>
 
             <footer className="flex items-center justify-between gap-3 border-t border-line px-4 py-4">
-              <p className="text-[11px] text-muted">صفحه {formatNumber(page)} از {formatNumber(pageCount)}</p>
+              <p className="text-[11px] text-muted">
+                صفحه {formatNumber(page)} از {formatNumber(pageCount)}
+              </p>
               <Pagination page={page} pageCount={pageCount} onChange={setPage} />
             </footer>
           </>
