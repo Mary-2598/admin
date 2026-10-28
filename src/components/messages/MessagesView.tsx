@@ -17,6 +17,7 @@ import { BoothTable } from "./BoothTable";
 import { ConversationPanel } from "./ConversationPanel";
 import { MessageStatsCards } from "./MessageStatsCards";
 import { SupportActionsPanel } from "./SupportActionsPanel";
+import { DetailPanelsLayout } from "@/features/dashboard-details/shared/components/DetailPanelsLayout";
 
 const READ_TABS = [
   { id: "all", label: "همه" },
@@ -99,26 +100,10 @@ export function MessagesView({ filters, stats, initialBooths }: Props) {
 
       {/* RTL grid: the first column is on the RIGHT. Design = conversation on the right, table on the left;
           the DOM keeps the logical order (table first) for keyboard and screen-reader users. */}
-      <div className="grid items-start gap-6 lg:grid-cols-[420px_minmax(0,1fr)]">
-        <section aria-label="غرفه‌ها" className="min-w-0 rounded-2xl bg-white shadow-card lg:order-2">
-          <Tabs
-            label="فیلتر خوانده‌شدن"
-            items={READ_TABS}
-            value={read}
-            onChange={(id) => { setRead(id as ReadFilter); setPage(1); }}
-          >
-            <BoothTable
-              data={booths}
-              selectedId={selected?.id ?? null}
-              busy={isLoading}
-              onSelect={setPickedId}
-              onPage={setPage}
-            />
-          </Tabs>
-        </section>
-
-        <div className="min-w-0 lg:order-1">
-          {selected ? (
+            <DetailPanelsLayout
+        gap="wide"
+        rightPanel={
+          selected ? (
             <ConversationPanel
               key={selected.id}
               boothId={selected.id}
@@ -126,12 +111,36 @@ export function MessagesView({ filters, stats, initialBooths }: Props) {
               onAction={(type, description) => addAction(type, description)}
             />
           ) : (
-            <section className="rounded-2xl bg-white p-8 text-center text-sm text-muted shadow-card">
+            <section className="rounded-xl border border-line bg-white p-8 text-center text-sm text-muted shadow-card">
               یک غرفه را انتخاب کنید.
             </section>
-          )}
-        </div>
-      </div>
+          )
+        }
+        leftPanel={
+          <section
+            aria-label="غرفه‌ها"
+            className="min-w-0 overflow-hidden rounded-xl border border-line bg-white shadow-card"
+          >
+            <Tabs
+              label="فیلتر خوانده‌شدن"
+              items={READ_TABS}
+              value={read}
+              onChange={(id) => {
+                setRead(id as ReadFilter);
+                setPage(1);
+              }}
+            >
+              <BoothTable
+                data={booths}
+                selectedId={selected?.id ?? null}
+                busy={isLoading}
+                onSelect={setPickedId}
+                onPage={setPage}
+              />
+            </Tabs>
+          </section>
+        }
+      />
 
       <SupportActionsPanel rows={actions} filtersQuery={filtersQuery} onCreate={addAction} />
     </div>

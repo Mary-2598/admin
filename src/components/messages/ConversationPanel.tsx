@@ -69,8 +69,8 @@ export function ConversationPanel({ boothId, boothName, onAction }: Props) {
   const loading = <p className="text-sm text-muted">در حال دریافت...</p>;
 
   return (
-    <section aria-label="گفتگو" className="rounded-2xl bg-white shadow-card">
-      <div className="px-6 pt-5">
+    <section aria-label="گفتگو" className="min-w-0 overflow-hidden rounded-xl border border-line bg-white shadow-card">
+      <div className="border-b border-line px-5 py-4">
         <h2 className="font-bold">تحلیل کلی بازدید ها و پاسخ ها</h2>
         <p className="mt-1 text-xs text-muted">{boothName}</p>
       </div>

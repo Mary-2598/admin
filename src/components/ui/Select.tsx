@@ -21,8 +21,10 @@ export function Select({ label, value, options, onChange }: SelectProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={cn(
-          "h-full w-full cursor-pointer appearance-none rounded-md pe-9 ps-4 text-sm font-semibold shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-brand",
-          isActive ? "bg-sky-200 text-ink" : "bg-white",
+          "h-full w-full cursor-pointer appearance-none rounded-lg border border-line pe-9 ps-4 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-brand",
+          isActive
+            ? "border-brand/50 bg-cyan-50 text-ink"
+            : "bg-white text-muted hover:bg-page hover:text-ink",
         )}
       >
         {options.map((o) => (

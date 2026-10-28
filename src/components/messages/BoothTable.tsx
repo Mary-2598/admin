@@ -36,7 +36,10 @@ export function BoothTable({ data, selectedId, busy, onSelect, onPage }: BoothTa
                 <tr
                   key={row.id}
                   onClick={() => onSelect(row.id)}
-                  className={cn("cursor-pointer border-b border-line hover:bg-page", selected && "bg-gray-100")}
+                  className={cn(
+                    "cursor-pointer border-b border-line transition-colors hover:bg-cyan-50/50",
+                    selected && "bg-cyan-50/70",
+                  )}
                 >
                   <th scope="row" className="px-3 py-3 text-start font-normal">
                     <button
